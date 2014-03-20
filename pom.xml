@@ -27,7 +27,7 @@
     <groupId>org.apache.james.jdkim</groupId>
     <artifactId>apache-jdkim-project</artifactId>
     <name>Apache JAMES DomainKey Project</name>
-    <version>0.2-BW</version>
+    <version>0.3-BW-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>Apache JAMES jDKIM Project</description>
     <url>http://james.apache.org/jdkim/</url>
