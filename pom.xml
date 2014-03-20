@@ -35,6 +35,8 @@
 
     <properties>
         <target.jdk>1.7</target.jdk>
+        <bedework.releases.repo.url>scp://dev.bedework.org/data/repository/maven/maven2</bedework.releases.repo.url>
+        <bedework.snapshots.repo.url>scp://dev.bedework.org/data/repository/maven/maven2</bedework.snapshots.repo.url>
     </properties>
 
     <modules>
@@ -44,16 +46,29 @@
     </modules>
 
     <distributionManagement>
-        <site>
-            <id>jdkim-current-website</id>
-            <url>scp://people.apache.org/www/james.apache.org/jdkim/current/</url>
-        </site>
+      <repository>
+        <id>bedework-releases-repository</id>
+        <name>Bedework Releases Repository</name>
+        <url>${bedework.releases.repo.url}</url>
+      </repository>
+      <snapshotRepository>
+        <id>bedework-snapshots-repository</id>
+        <name>Bedework Snapshots Repository</name>
+        <url>${bedework.snapshots.repo.url}</url>
+      </snapshotRepository>
     </distributionManagement>
 
     <issueManagement>
-        <system>JIRA</system>
-        <url>https://issues.apache.org/jira/browse/JDKIM</url>
+      <system>github</system>
+  
+      <url>https://github.com/Bedework/apache-jdkim/issues</url>
     </issueManagement>
+
+    <scm>
+      <connection>scm:git:git@github.com:Bedework/apache-jdkim.git</connection>
+      <developerConnection>scm:git:git@github.com:Bedework/apache-jdkim.git</developerConnection>
+      <url>https://github.com/Bedework/apache-jdkim</url>
+    </scm>
 
     <scm>
         <connection>scm:svn:http://svn.apache.org/repos/asf/james/jdkim/tags/apache-jdkim-project-0.2</connection>
