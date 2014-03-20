@@ -70,12 +70,6 @@
       <url>https://github.com/Bedework/apache-jdkim</url>
     </scm>
 
-    <scm>
-        <connection>scm:svn:http://svn.apache.org/repos/asf/james/jdkim/tags/apache-jdkim-project-0.2</connection>
-        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/james/jdkim/tags/apache-jdkim-project-0.2</developerConnection>
-        <url>http://svn.apache.org/viewcvs.cgi/james/jdkim/tags/apache-jdkim-project-0.2?root=Apache-SVN</url>
-    </scm>
-
     <mailingLists>
         <mailingList>
             <name>Apache JAMES Server List</name>
