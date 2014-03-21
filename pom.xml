@@ -27,7 +27,7 @@
     <groupId>org.apache.james.jdkim</groupId>
     <artifactId>apache-jdkim-project</artifactId>
     <name>Apache JAMES DomainKey Project</name>
-    <version>0.2.BEDEWORK-SNAPSHOT</version>
+    <version>0.3-BW-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>Apache JAMES jDKIM Project</description>
     <url>http://james.apache.org/jdkim/</url>
@@ -35,6 +35,8 @@
 
     <properties>
         <target.jdk>1.7</target.jdk>
+        <bedework.releases.repo.url>scp://dev.bedework.org/data/repository/maven/maven2</bedework.releases.repo.url>
+        <bedework.snapshots.repo.url>scp://dev.bedework.org/data/repository/maven/maven2</bedework.snapshots.repo.url>
     </properties>
 
     <modules>
@@ -44,21 +46,28 @@
     </modules>
 
     <distributionManagement>
-        <site>
-            <id>jdkim-current-website</id>
-            <url>scp://people.apache.org/www/james.apache.org/jdkim/current/</url>
-        </site>
+      <repository>
+        <id>bedework-releases-repository</id>
+        <name>Bedework Releases Repository</name>
+        <url>${bedework.releases.repo.url}</url>
+      </repository>
+      <snapshotRepository>
+        <id>bedework-snapshots-repository</id>
+        <name>Bedework Snapshots Repository</name>
+        <url>${bedework.snapshots.repo.url}</url>
+      </snapshotRepository>
     </distributionManagement>
 
     <issueManagement>
-        <system>JIRA</system>
-        <url>https://issues.apache.org/jira/browse/JDKIM</url>
+      <system>github</system>
+  
+      <url>https://github.com/Bedework/apache-jdkim/issues</url>
     </issueManagement>
 
     <scm>
-        <connection>scm:svn:http://svn.apache.org/repos/asf/james/jdkim/tags/apache-jdkim-project-0.2</connection>
-        <developerConnection>scm:svn:https://svn.apache.org/repos/asf/james/jdkim/tags/apache-jdkim-project-0.2</developerConnection>
-        <url>http://svn.apache.org/viewcvs.cgi/james/jdkim/tags/apache-jdkim-project-0.2?root=Apache-SVN</url>
+      <connection>scm:git:git@github.com:Bedework/apache-jdkim.git</connection>
+      <developerConnection>scm:git:git@github.com:Bedework/apache-jdkim.git</developerConnection>
+      <url>https://github.com/Bedework/apache-jdkim</url>
     </scm>
 
     <mailingLists>
@@ -228,6 +237,13 @@
     </dependencyManagement>
 
     <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>2.4</version>
+            </extension>
+        </extensions>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -308,19 +324,6 @@
             </plugins>
         </pluginManagement>
         <plugins>
-            <plugin>
-                <groupId>org.apache.rat</groupId>
-                <artifactId>apache-rat-plugin</artifactId>
-                <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
