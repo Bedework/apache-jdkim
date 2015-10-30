@@ -19,21 +19,6 @@
 
 package org.apache.james.jdkim;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.PublicKey;
-import java.security.Signature;
-import java.security.SignatureException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
 import org.apache.james.jdkim.api.BodyHasher;
 import org.apache.james.jdkim.api.Headers;
 import org.apache.james.jdkim.api.PublicKeyRecord;
@@ -51,6 +36,21 @@ import org.apache.james.jdkim.impl.MultiplexingPublicKeyRecordRetriever;
 import org.apache.james.jdkim.impl.StoredPublicKeyRecordRetriever;
 import org.apache.james.jdkim.tagvalue.PublicKeyRecordImpl;
 import org.apache.james.jdkim.tagvalue.SignatureRecordImpl;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.Signature;
+import java.security.SignatureException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 public class DKIMVerifier extends DKIMCommon {
 	/* Servers in close proximity might have clocks slightly out of alignment
@@ -81,9 +81,9 @@ public class DKIMVerifier extends DKIMCommon {
 
     /** Save a stored key for private-exchange
      *
-     * @param domain
-     * @param selector
-     * @param key
+     * @param domain as per spec
+     * @param selector as per spec
+     * @param key as per spec
      */
     public static void addStoredKey(final String domain,
     		final String selector, final String key) {
@@ -177,8 +177,8 @@ public class DKIMVerifier extends DKIMCommon {
      * @param sign
      *                the signature record
      * @return an "applicable" PublicKeyRecord
-     * @throws TempFailException
-     * @throws PermFailException
+     * @throws TempFailException on error
+     * @throws PermFailException on error
      */
     public PublicKeyRecord publicRecordLookup(final SignatureRecord sign)
             throws TempFailException, PermFailException {
@@ -234,7 +234,7 @@ public class DKIMVerifier extends DKIMCommon {
      * @param is
      *                inputStream
      * @return a list of verified signature records.
-     * @throws IOException
+     * @throws IOException if error
      * @throws FailException
      *                 if no signature can be verified
      */
@@ -369,7 +369,7 @@ public class DKIMVerifier extends DKIMCommon {
      * @param bodyInputStream
      *                input stream for the body.
      * @return a list of verified signature records
-     * @throws IOException
+     * @throws IOException on io error
      * @throws FailException
      *                 if no signature can be verified
      */
@@ -395,7 +395,7 @@ public class DKIMVerifier extends DKIMCommon {
      * signatures given the previously prepared compound body hasher where
      * the user already written the body to the outputstream and closed it.
      *
-     * @param compoundBodyHasher the BodyHasher previously obtained by this class.
+     * @param bh the BodyHasher previously obtained by this class.
      * @return a list of valid (verified) signatures or null on null input.
      * @throws FailException if no valid signature is found
      */

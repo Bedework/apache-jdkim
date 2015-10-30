@@ -324,7 +324,7 @@ public class TagValue {
      *                   Logging methods
      *  =================================================================== */
 
-    /**
+    /* *
      * @return Logger
      * /
     protected Logger getLogger() {
@@ -335,6 +335,10 @@ public class TagValue {
       return log;
     }*/
 
+  /**
+   *
+   * @param msg the message
+   */
     protected void debugMsg(final String msg) {
   //    getLogger().debug(msg);
     	System.out.println(msg);

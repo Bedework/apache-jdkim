@@ -19,14 +19,14 @@
 
 package org.apache.james.jdkim.impl;
 
+import org.apache.james.jdkim.api.PublicKeyRecordRetriever;
+import org.apache.james.jdkim.exceptions.PermFailException;
+import org.apache.james.jdkim.exceptions.TempFailException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.james.jdkim.api.PublicKeyRecordRetriever;
-import org.apache.james.jdkim.exceptions.PermFailException;
-import org.apache.james.jdkim.exceptions.TempFailException;
 
 /** Stores and returns public keys which have been supplied in some out of band manner
  */
@@ -49,9 +49,9 @@ public class StoredPublicKeyRecordRetriever implements PublicKeyRecordRetriever 
     }
 
     /**
-     * @param domain
-     * @param selector
-     * @param key
+     * @param domain per spec
+     * @param selector per spec
+     * @param key per spec
      */
     public static void addKey(final String domain, final String selector, final String key) {
     	Map<String, String> domainKeys = pkeys.get(domain);

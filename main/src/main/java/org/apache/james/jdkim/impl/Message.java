@@ -19,22 +19,21 @@
 
 package org.apache.james.jdkim.impl;
 
+import org.apache.james.jdkim.api.Headers;
+import org.apache.james.mime4j.MimeException;
+import org.apache.james.mime4j.dom.MessageBuilder;
+import org.apache.james.mime4j.dom.MessageServiceFactory;
+import org.apache.james.mime4j.dom.MessageWriter;
+import org.apache.james.mime4j.dom.SingleBody;
+import org.apache.james.mime4j.io.EOLConvertingInputStream;
+import org.apache.james.mime4j.stream.Field;
+import org.apache.james.mime4j.stream.MimeConfig;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.apache.james.jdkim.api.Headers;
-import org.apache.james.mime4j.MimeException;
-import org.apache.james.mime4j.MimeIOException;
-import org.apache.james.mime4j.dom.MessageBuilder;
-import org.apache.james.mime4j.dom.MessageWriter;
-import org.apache.james.mime4j.dom.MessageServiceFactory;
-import org.apache.james.mime4j.dom.SingleBody;
-import org.apache.james.mime4j.stream.Field;
-import org.apache.james.mime4j.io.EOLConvertingInputStream;
-import org.apache.james.mime4j.stream.MimeConfig;
 
 /**
  * The header of an entity (see RFC 2045).
@@ -45,19 +44,19 @@ public class Message implements Headers {
 
     /**
      * Creates a new <code>Header</code> from the specified stream.
-     * 
+     *
      * @param is
      *                the stream to read the header from.
-     * 
+     *
      * @throws IOException
      *                 on I/O errors.
-     * @throws MimeIOException
+     * @throws MimeException
      *                 on MIME protocol violations.
      */
     public Message(InputStream is) throws IOException, MimeException {
         MessageBuilder mb = newMessageBuilder().newMessageBuilder();
         org.apache.james.mime4j.dom.Message mImpl = mb.parseMessage(new EOLConvertingInputStream(is));
-        
+
         this.message = mImpl;
     }
 
@@ -65,12 +64,12 @@ public class Message implements Headers {
         MimeConfig mec = new MimeConfig();
         mec.setMaxLineLen(10000);
         mec.setMaxHeaderLen(30000);
-        
+
         MessageServiceFactory mbf = MessageServiceFactory.newInstance();
         mbf.setAttribute("MimeEntityConfig", mec);
         mbf.setAttribute("FlatMode", true);
         mbf.setAttribute("ContentDecoding", false);
-        
+
         return mbf;
     }
 
@@ -123,7 +122,7 @@ public class Message implements Headers {
     /**
      * Return Header Object as String representation. Each headerline is
      * seperated by "\r\n"
-     * 
+     *
      * @return headers
      */
     public String toString() {

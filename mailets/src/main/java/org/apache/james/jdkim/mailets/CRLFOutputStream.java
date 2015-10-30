@@ -26,11 +26,11 @@ import java.io.OutputStream;
 /**
  * A Filter for use with SMTP or other protocols in which lines must end with
  * CRLF. Converts every "isolated" occourency of \r or \n with \r\n
- * 
+ *
  * RFC 2821 #2.3.7 mandates that line termination is CRLF, and that CR and LF
  * must not be transmitted except in that pairing. If we get a naked LF, convert
  * to CRLF.
- * 
+ *
  */
 public class CRLFOutputStream extends FilterOutputStream {
 
@@ -49,7 +49,7 @@ public class CRLFOutputStream extends FilterOutputStream {
 
     /**
      * Constructor that wraps an OutputStream.
-     * 
+     *
      * @param out
      *            the OutputStream to be wrapped
      */
@@ -63,10 +63,10 @@ public class CRLFOutputStream extends FilterOutputStream {
     /**
      * Writes a byte to the stream Fixes any naked CR or LF to the RFC 2821
      * mandated CFLF pairing.
-     * 
+     *
      * @param b
      *            the byte to write
-     * 
+     *
      * @throws IOException
      *             if an error occurs writing the byte
      */
@@ -98,8 +98,12 @@ public class CRLFOutputStream extends FilterOutputStream {
     /**
      * Provides an extension point for ExtraDotOutputStream to be able to add
      * dots at the beginning of new lines.
-     * 
+     *
      * @see java.io.FilterOutputStream#write(byte[], int, int)
+     *
+     * @param buffer byte buffer
+     * @param offset int offset
+     * @param length and length
      */
     protected void writeChunk(byte buffer[], int offset, int length)
             throws IOException {
@@ -108,6 +112,10 @@ public class CRLFOutputStream extends FilterOutputStream {
 
     /**
      * @see java.io.FilterOutputStream#write(byte[], int, int)
+     *
+     * @param buffer byte buffer
+     * @param offset int offset
+     * @param length and length
      */
     public synchronized void write(byte buffer[], int offset, int length)
             throws IOException {
@@ -147,7 +155,7 @@ public class CRLFOutputStream extends FilterOutputStream {
 
     /**
      * Ensure that the stream is CRLF terminated.
-     * 
+     *
      * @throws IOException
      *             if an error occurs writing the byte
      */

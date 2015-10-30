@@ -15,16 +15,16 @@
     "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
     KIND, either express or implied.  See the License for the
     specific language governing permissions and limitations
-    under the License.    
+    under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <artifactId>apache-jdkim-project</artifactId>
-        <groupId>org.apache.james.jdkim</groupId>
-        <version>0.3-BW-SNAPSHOT</version>
+        <groupId>org.bedework</groupId>
+        <version>0.3-SNAPSHOT</version>
     </parent>
-    <groupId>org.apache.james.jdkim</groupId>
+    <groupId>org.bedework</groupId>
     <artifactId>apache-jdkim-library</artifactId>
     <name>Apache JAMES jDKIM</name>
     <packaging>jar</packaging>
@@ -103,7 +103,7 @@
         <artifactId>httpclient</artifactId>
         <version>4.1.2</version>
       </dependency>
-      
+
       <dependency>
         <groupId>org.apache.httpcomponents</groupId>
         <artifactId>httpcore</artifactId>
@@ -147,7 +147,7 @@
                         <!-- test resources created by JAMES committers / we can't include ALv2 headers there -->
                         <exclude>src/test/resources/org/apache/james/jdkim/corpus/*</exclude>
                         <exclude>src/test/resources/org/apache/james/jdkim/Mail-DKIM/FAKE_DNS.dat</exclude>
-                        <!-- 3rd party resources described in NOTICE: see the maven-remote-resources-plugin 
+                        <!-- 3rd party resources described in NOTICE: see the maven-remote-resources-plugin
                             configuration, in this file -->
                         <exclude>src/test/resources/org/apache/james/jdkim/Mail-DKIM/corpus/*</exclude>
                         <!-- maven / IDE artifacts created during build -->

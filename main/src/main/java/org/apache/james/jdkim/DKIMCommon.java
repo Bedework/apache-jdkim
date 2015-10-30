@@ -19,6 +19,10 @@
 
 package org.apache.james.jdkim;
 
+import org.apache.james.jdkim.api.Headers;
+import org.apache.james.jdkim.api.SignatureRecord;
+import org.apache.james.jdkim.exceptions.PermFailException;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -27,10 +31,6 @@ import java.security.SignatureException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.james.jdkim.api.Headers;
-import org.apache.james.jdkim.api.SignatureRecord;
-import org.apache.james.jdkim.exceptions.PermFailException;
 
 public abstract class DKIMCommon {
 	//protected static transient Logger log;
@@ -167,7 +167,7 @@ public abstract class DKIMCommon {
      *                   Logging methods
      *  =================================================================== */
 
-    /**
+    /* *
      * @return Logger
      * /
     protected static Logger getLogger() {

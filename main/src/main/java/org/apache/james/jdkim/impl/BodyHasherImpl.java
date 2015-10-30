@@ -19,10 +19,6 @@
 
 package org.apache.james.jdkim.impl;
 
-import java.io.OutputStream;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-
 import org.apache.james.jdkim.api.BodyHasher;
 import org.apache.james.jdkim.api.SignatureRecord;
 import org.apache.james.jdkim.canon.DebugOutputStream;
@@ -31,6 +27,10 @@ import org.apache.james.jdkim.canon.LimitedOutputStream;
 import org.apache.james.jdkim.canon.RelaxedBodyCanonicalizer;
 import org.apache.james.jdkim.canon.SimpleBodyCanonicalizer;
 import org.apache.james.jdkim.exceptions.PermFailException;
+
+import java.io.OutputStream;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class BodyHasherImpl implements BodyHasher {
 
@@ -47,7 +47,7 @@ public class BodyHasherImpl implements BodyHasher {
             throw new PermFailException("Unsupported algorythm: "
                     + sign.getHashAlgo(), e);
         }
-        
+
         try {
             sign.validate();
         } catch (IllegalStateException e) {
@@ -99,9 +99,6 @@ public class BodyHasherImpl implements BodyHasher {
         return out;
     }
 
-    /**
-     * @see org.apache.james.jdkim.api.BodyHasher#getSignatureRecord()
-     */
     public SignatureRecord getSignatureRecord() {
         return sign;
     }
@@ -110,9 +107,6 @@ public class BodyHasherImpl implements BodyHasher {
         return digesterOS;
     }
 
-    /**
-     * @see org.apache.james.jdkim.api.BodyHasher#getDigest()
-     */
     public byte[] getDigest() {
         return getDigesterOutputStream().getDigest();
     }

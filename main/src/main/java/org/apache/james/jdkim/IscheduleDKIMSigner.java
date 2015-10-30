@@ -19,6 +19,15 @@
 
 package org.apache.james.jdkim;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.james.jdkim.api.BodyHasher;
+import org.apache.james.jdkim.api.Headers;
+import org.apache.james.jdkim.api.SignatureRecord;
+import org.apache.james.jdkim.exceptions.FailException;
+import org.apache.james.jdkim.exceptions.PermFailException;
+import org.apache.james.jdkim.impl.BodyHasherImpl;
+import org.apache.james.jdkim.tagvalue.SignatureRecordImpl;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
@@ -30,15 +39,6 @@ import java.security.SignatureException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.List;
-
-import org.apache.commons.codec.binary.Base64;
-import org.apache.james.jdkim.api.BodyHasher;
-import org.apache.james.jdkim.api.Headers;
-import org.apache.james.jdkim.api.SignatureRecord;
-import org.apache.james.jdkim.exceptions.FailException;
-import org.apache.james.jdkim.exceptions.PermFailException;
-import org.apache.james.jdkim.impl.BodyHasherImpl;
-import org.apache.james.jdkim.tagvalue.SignatureRecordImpl;
 
 /** Variation on the DKIMSigner class which handles ischdule (http) data
  *
@@ -70,14 +70,14 @@ public class IscheduleDKIMSigner extends DKIMCommon {
     }
 
     /**
-     * @param headers
+     * @param headers http headers
      * @param is stream for content.
      * @return the dkim signature header
-     * @throws IOException
-     * @throws FailException
+     * @throws IOException on error
+     * @throws FailException on error
      */
     public String sign(final Headers headers,
-    		final InputStream is) throws IOException, FailException {
+                       final InputStream is) throws IOException, FailException {
         try {
         	SignatureRecord srt = newSignatureRecordTemplate(signatureRecordTemplate);
 
