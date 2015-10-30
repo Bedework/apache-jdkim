@@ -22,7 +22,7 @@
     <parent>
         <artifactId>apache-jdkim-project</artifactId>
         <groupId>org.bedework</groupId>
-        <version>0.4</version>
+        <version>0.5-SNAPSHOT</version>
     </parent>
     <groupId>org.bedework</groupId>
     <artifactId>apache-jdkim-library</artifactId>
@@ -48,7 +48,7 @@
         <connection>scm:svn:http://svn.apache.org/repos/asf/james/jdkim/tags/apache-jdkim-project-0.2/trunk</connection>
         <developerConnection>scm:svn:https://svn.apache.org/repos/asf/james/jdkim/tags/apache-jdkim-project-0.2/trunk</developerConnection>
         <url>http://svn.apache.org/viewvc/james/jdkim/tags/apache-jdkim-project-0.2/trunk</url>
-      <tag>apache-jdkim-project-0.4</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <dependencies>
