@@ -35,6 +35,13 @@
     <url>https://github.com/Bedework/apache-jdkim</url>
     <inceptionYear>2009</inceptionYear>
 
+  <licenses>
+    <license>
+      <name>Apache License Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+    </license>
+  </licenses>
+
     <properties>
         <target.jdk>1.7</target.jdk>
     </properties>
