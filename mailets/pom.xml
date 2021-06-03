@@ -36,8 +36,9 @@
             <artifactId>apache-mailet</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.james.jdkim</groupId>
+            <groupId>org.bedework</groupId>
             <artifactId>apache-jdkim-library</artifactId>
+            <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.james</groupId>
@@ -50,8 +51,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.apache.james.jdkim</groupId>
+            <groupId>org.bedework</groupId>
             <artifactId>apache-jdkim-library</artifactId>
+            <version>${project.version}</version>
             <type>test-jar</type>
             <scope>test</scope>
             <exclusions>

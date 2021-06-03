@@ -208,21 +208,21 @@
                 <version>2.1.1</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.james.jdkim</groupId>
+                <groupId>org.bedework</groupId>
                 <artifactId>apache-jdkim-library</artifactId>
-                <version>0.2</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.james.jdkim</groupId>
+                <groupId>org.bedework</groupId>
                 <artifactId>apache-jdkim-library</artifactId>
-                <version>0.2</version>
+                <version>${project.version}</version>
                 <type>test-jar</type>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>org.apache.james.jdkim</groupId>
+                <groupId>org.bedework</groupId>
                 <artifactId>apache-jdkim-mailets</artifactId>
-                <version>0.2</version>
+                <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>ca.juliusdavies</groupId>
