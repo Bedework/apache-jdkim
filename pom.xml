@@ -29,7 +29,7 @@
     <groupId>org.bedework</groupId>
     <artifactId>apache-jdkim-project</artifactId>
     <name>Apache JAMES DomainKey Project</name>
-    <version>0.5</version>
+    <version>0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>A fork of the Apache JAMES jDKIM Project for Bedework</description>
     <url>https://github.com/Bedework/apache-jdkim</url>
@@ -83,7 +83,7 @@
         <connection>scm:git:git@github.com:Bedework/apache-jdkim.git</connection>
         <developerConnection>scm:git:git@github.com:Bedework/apache-jdkim.git</developerConnection>
         <url>https://github.com/Bedework/apache-jdkim</url>
-        <tag>apache-jdkim-project-0.5</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <mailingLists>

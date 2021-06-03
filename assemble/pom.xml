@@ -22,7 +22,7 @@
     <parent>
         <artifactId>apache-jdkim-project</artifactId>
         <groupId>org.bedework</groupId>
-        <version>0.5</version>
+        <version>0.6-SNAPSHOT</version>
     </parent>
     <groupId>org.bedework</groupId>
     <artifactId>apache-jdkim</artifactId>
