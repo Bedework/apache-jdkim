@@ -35,15 +35,15 @@
     <url>https://github.com/Bedework/apache-jdkim</url>
     <inceptionYear>2009</inceptionYear>
 
-  <licenses>
-    <license>
-      <name>Apache License Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
-    </license>
-  </licenses>
+    <licenses>
+        <license>
+            <name>Apache License Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        </license>
+    </licenses>
 
     <properties>
-        <target.jdk>1.7</target.jdk>
+        <target.jdk>11</target.jdk>
     </properties>
 
     <modules>
@@ -52,39 +52,39 @@
         <module>assemble</module>
     </modules>
 
-  <developers>
-    <developer>
-      <name>Mike Douglass</name>
-      <organization>
-        Spherical Cow Group
-      </organization>
-      <organizationUrl>http://sphericalcowgroup.com/</organizationUrl>
-    </developer>
-  </developers>
+    <developers>
+        <developer>
+            <name>Mike Douglass</name>
+            <organization>
+                Spherical Cow Group
+            </organization>
+            <organizationUrl>http://sphericalcowgroup.com/</organizationUrl>
+        </developer>
+    </developers>
 
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-  </distributionManagement>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <issueManagement>
-      <system>github</system>
+        <system>github</system>
 
-      <url>https://github.com/Bedework/apache-jdkim/issues</url>
+        <url>https://github.com/Bedework/apache-jdkim/issues</url>
     </issueManagement>
 
     <scm>
-      <connection>scm:git:git@github.com:Bedework/apache-jdkim.git</connection>
-      <developerConnection>scm:git:git@github.com:Bedework/apache-jdkim.git</developerConnection>
-      <url>https://github.com/Bedework/apache-jdkim</url>
-      <tag>HEAD</tag>
-  </scm>
+        <connection>scm:git:git@github.com:Bedework/apache-jdkim.git</connection>
+        <developerConnection>scm:git:git@github.com:Bedework/apache-jdkim.git</developerConnection>
+        <url>https://github.com/Bedework/apache-jdkim</url>
+        <tag>HEAD</tag>
+    </scm>
 
     <mailingLists>
         <mailingList>
@@ -131,10 +131,6 @@
                     <exclusion>
                         <groupId>logkit</groupId>
                         <artifactId>logkit</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>log4j</groupId>
-                        <artifactId>log4j</artifactId>
                     </exclusion>
                     <exclusion>
                         <groupId>javax.servlet</groupId>
@@ -207,12 +203,6 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <scope>runtime</scope>
-                <version>1.2.16</version>
-            </dependency>
-            <dependency>
                 <groupId>dnsjava</groupId>
                 <artifactId>dnsjava</artifactId>
                 <version>2.1.1</version>
@@ -265,12 +255,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-clean-plugin</artifactId>
-                    <version>2.4.1</version>
+                    <version>3.1.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
+                    <version>3.8.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -295,7 +285,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
-                    <version>3.0-beta-3</version>
+                    <version>3.9.0</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -320,7 +310,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.7</version>
+                    <version>3.1.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -352,6 +342,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
                 <executions>
                     <execution>
                         <id>aggregate</id>
@@ -406,10 +397,11 @@
             </plugin>
             -->
 
-            <!-- Site generation -->
+            <!-- Site generation
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
+                <version>3.9.0</version>
                 <executions>
                     <execution>
                         <id>attach-descriptor</id>
@@ -426,7 +418,7 @@
                     <siteDirectory>${maven-site-plugin.siteDirectory}</siteDirectory>
                     <generateReports>${maven-site-plugin.generateReports}</generateReports>
                     <reportPlugins>
-                        <!-- Order matters. First project-info-reports, second jxr. -->
+                        < ! - - Order matters. First project-info-reports, second jxr. - - >
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-project-info-reports-plugin</artifactId>
@@ -467,10 +459,10 @@
                                 <excludes>
                                     <exclude>NOTICE.*</exclude>
                                     <exclude>LICENSE.*</exclude>
-                                    <!-- Generated by Maven -->
+                                    < ! - - Generated by Maven - - >
                                     <exclude>release.properties</exclude>
                                     <exclude>dist/**/*</exclude>
-                                    <!-- Eclipse -->
+                                    < ! - - Eclipse - - >
                                     <exclude>**/.*</exclude>
                                     <exclude>.*/**/*</exclude>
                                 </excludes>
@@ -534,14 +526,14 @@
                             <configuration>
                                 <xrefLocation>${project.reporting.outputDirectory}/../xref</xrefLocation>
                                 <xrefTestLocation>${project.reporting.outputDirectory}/../xref-test</xrefTestLocation>
-                                <!-- required by dashboard plugin and hudson -->
+                                < ! - - required by dashboard plugin and hudson - - >
                                 <xmlOutput>true</xmlOutput>
                                 <effort>Max</effort>
                                 <findbugsXmlOutput>true</findbugsXmlOutput>
                                 <findbugsXmlWithMessages>true</findbugsXmlWithMessages>
                             </configuration>
                         </plugin>
-                        <!--
+                        < ! - -
                         <plugin>
                           <groupId>org.apache.maven.plugins</groupId>
                           <artifactId>maven-changes-plugin</artifactId>
@@ -559,75 +551,75 @@
                             </reportSet>
                           </reportSets>
                         </plugin>
-                        -->
+                        - - >
                     </reportPlugins>
                 </configuration>
             </plugin>
-
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-release-plugin</artifactId>
-            <version>2.5</version>
-            <configuration>
-              <autoVersionSubmodules>true</autoVersionSubmodules>
-              <useReleaseProfile>false</useReleaseProfile>
-              <releaseProfiles>release</releaseProfiles>
-            </configuration>
-          </plugin>
+ -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
-  <profiles>
-    <profile>
-      <id>release</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-source-plugin</artifactId>
-            <version>2.2.1</version>
-            <executions>
-              <execution>
-                <id>attach-sources</id>
-                <goals>
-                  <goal>jar-no-fork</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>2.9.1</version>
-            <executions>
-              <execution>
-                <id>attach-javadocs</id>
-                <goals>
-                  <goal>jar</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <additionalparam>-Xdoclint:none</additionalparam>
-              <failOnError>false</failOnError>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.5</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <version>2.2.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-sources</id>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>3.1.1</version>
+                        <executions>
+                            <execution>
+                                <id>attach-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <additionalJOption>-Xdoclint:none</additionalJOption>
+                            <failOnError>false</failOnError>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
