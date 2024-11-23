@@ -35,7 +35,7 @@
 
     <artifactId>apache-jdkim-project</artifactId>
     <name>Apache JAMES DomainKey Project</name>
-    <version>0.7</version>
+    <version>0.7-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <description>A fork of the Apache JAMES jDKIM Project for Bedework</description>
