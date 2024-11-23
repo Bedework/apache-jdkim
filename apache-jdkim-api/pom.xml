@@ -10,4 +10,6 @@
   </parent>
 
   <artifactId>apache-jdkim-api</artifactId>
+  <name>Apache JAMES jDKIM api</name>
+  <description>API for a Java implementation for the DKIM specification.</description>
 </project>
