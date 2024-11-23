@@ -22,7 +22,7 @@
     <parent>
         <artifactId>apache-jdkim-project</artifactId>
         <groupId>org.bedework</groupId>
-        <version>0.7-SNAPSHOT</version>
+        <version>0.7</version>
     </parent>
 
     <artifactId>apache-jdkim-mailets</artifactId>
