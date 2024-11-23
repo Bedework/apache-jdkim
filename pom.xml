@@ -26,11 +26,18 @@
         <version>1.6</version>
     </parent>
     -->
-    <groupId>org.bedework</groupId>
+
+    <parent>
+        <groupId>org.bedework</groupId>
+        <artifactId>bedework-parent</artifactId>
+        <version>76-SNAPSHOT</version>
+    </parent>
+
     <artifactId>apache-jdkim-project</artifactId>
     <name>Apache JAMES DomainKey Project</name>
     <version>0.7-SNAPSHOT</version>
     <packaging>pom</packaging>
+
     <description>A fork of the Apache JAMES jDKIM Project for Bedework</description>
     <url>https://github.com/Bedework/apache-jdkim</url>
     <inceptionYear>2009</inceptionYear>
@@ -43,13 +50,14 @@
     </licenses>
 
     <properties>
-        <target.jdk>11</target.jdk>
+        <target.jdk>17</target.jdk>
     </properties>
 
     <modules>
         <module>main</module>
         <module>mailets</module>
         <module>assemble</module>
+        <module>apache-jdkim-api</module>
     </modules>
 
     <developers>
@@ -99,45 +107,11 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>3.8.2</version>
-                <scope>test</scope>
+                <groupId>org.bedework</groupId>
+                <artifactId>apache-jdkim-mailets</artifactId>
+                <version>${project.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-activation_1.1_spec</artifactId>
-                <version>1.0.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.javamail</groupId>
-                <artifactId>geronimo-javamail_1.4_mail</artifactId>
-                <version>1.6</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>1.4</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>1.1.1</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>avalon-framework</groupId>
-                        <artifactId>avalon-framework</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>logkit</groupId>
-                        <artifactId>logkit</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>servlet-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
+
             <dependency>
                 <groupId>org.apache.james</groupId>
                 <artifactId>apache-mailet-base</artifactId>
@@ -153,10 +127,12 @@
                     </exclusion>
                 </exclusions>
             </dependency>
+
             <dependency>
                 <groupId>org.apache.james</groupId>
                 <artifactId>apache-mailet-base</artifactId>
                 <version>1.1</version>
+                <type>test-jar</type>
                 <scope>test</scope>
                 <classifier>tests</classifier>
                 <exclusions>
@@ -170,23 +146,7 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <dependency>
-                <groupId>org.apache.james</groupId>
-                <artifactId>apache-mailet-base</artifactId>
-                <version>1.1</version>
-                <type>test-jar</type>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.mail</groupId>
-                        <artifactId>mail</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>javax.activation</groupId>
-                        <artifactId>activation</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
+
             <dependency>
                 <groupId>org.apache.james</groupId>
                 <artifactId>apache-mailet</artifactId>
@@ -202,45 +162,217 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <dependency>
-                <groupId>dnsjava</groupId>
-                <artifactId>dnsjava</artifactId>
-                <version>2.1.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.bedework</groupId>
-                <artifactId>apache-jdkim-library</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.bedework</groupId>
-                <artifactId>apache-jdkim-library</artifactId>
-                <version>${project.version}</version>
-                <type>test-jar</type>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.bedework</groupId>
-                <artifactId>apache-jdkim-mailets</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>ca.juliusdavies</groupId>
-                <artifactId>not-yet-commons-ssl</artifactId>
-                <version>0.3.11</version>
-            </dependency>
+
             <dependency>
                 <groupId>org.apache.james</groupId>
                 <artifactId>apache-mime4j-core</artifactId>
                 <version>0.7</version>
             </dependency>
+
             <dependency>
                 <groupId>org.apache.james</groupId>
                 <artifactId>apache-mime4j-dom</artifactId>
                 <version>0.7</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.apache.geronimo.specs</groupId>
+                <artifactId>geronimo-activation_1.1_spec</artifactId>
+                <version>1.0.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.geronimo.javamail</groupId>
+                <artifactId>geronimo-javamail_1.4_mail</artifactId>
+                <version>1.6</version>
+            </dependency>
+
+            <dependency>
+                <groupId>dnsjava</groupId>
+                <artifactId>dnsjava</artifactId>
+                <!-- <version>2.1.1</version> -->
+                <version>3.6.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>not-yet-commons-ssl</artifactId>
+                <version>0.3.9</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+    <!--
+        <dependencyManagement>
+            <dependencies>
+                <dependency>
+                    <groupId>junit</groupId>
+                    <artifactId>junit</artifactId>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.geronimo.specs</groupId>
+                    <artifactId>geronimo-activation_1.1_spec</artifactId>
+                    <version>1.0.2</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.geronimo.javamail</groupId>
+                    <artifactId>geronimo-javamail_1.4_mail</artifactId>
+                    <version>1.6</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>commons-codec</groupId>
+                    <artifactId>commons-codec</artifactId>
+                </dependency>
+
+                <dependency>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>avalon-framework</groupId>
+                            <artifactId>avalon-framework</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>logkit</groupId>
+                            <artifactId>logkit</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>javax.servlet</groupId>
+                            <artifactId>servlet-api</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.james</groupId>
+                    <artifactId>apache-mailet-base</artifactId>
+                    <version>1.1</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>javax.mail</groupId>
+                            <artifactId>mail</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>javax.activation</groupId>
+                            <artifactId>activation</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.james</groupId>
+                    <artifactId>apache-mailet-base</artifactId>
+                    <version>1.1</version>
+                    <scope>test</scope>
+                    <classifier>tests</classifier>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>javax.mail</groupId>
+                            <artifactId>mail</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>javax.activation</groupId>
+                            <artifactId>activation</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.james</groupId>
+                    <artifactId>apache-mailet-base</artifactId>
+                    <version>1.1</version>
+                    <type>test-jar</type>
+                    <scope>test</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>javax.mail</groupId>
+                            <artifactId>mail</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>javax.activation</groupId>
+                            <artifactId>activation</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.james</groupId>
+                    <artifactId>apache-mailet</artifactId>
+                    <version>2.4</version>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>javax.mail</groupId>
+                            <artifactId>mail</artifactId>
+                        </exclusion>
+                        <exclusion>
+                            <groupId>javax.activation</groupId>
+                            <artifactId>activation</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+
+                <dependency>
+                    <groupId>dnsjava</groupId>
+                    <artifactId>dnsjava</artifactId>
+                    < ! - - <version>2.1.1</version> - - >
+                    <version>3.6</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.bedework</groupId>
+                    <artifactId>apache-jdkim-api</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.bedework</groupId>
+                    <artifactId>apache-jdkim-library</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.bedework</groupId>
+                    <artifactId>apache-jdkim-library</artifactId>
+                    <version>${project.version}</version>
+                    <type>test-jar</type>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.bedework</groupId>
+                    <artifactId>apache-jdkim-mailets</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>ca.juliusdavies</groupId>
+                    <artifactId>not-yet-commons-ssl</artifactId>
+                    <version>0.3.11</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>not-yet-commons-ssl</artifactId>
+                    <version>0.3.9</version>
+                    <scope>test</scope>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.james</groupId>
+                    <artifactId>apache-mime4j-core</artifactId>
+                    <version>0.7</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.apache.james</groupId>
+                    <artifactId>apache-mime4j-dom</artifactId>
+                    <version>0.7</version>
+                </dependency>
+            </dependencies>
+        </dependencyManagement>
+        -->
 
     <build>
         <extensions>
@@ -295,7 +427,7 @@
                 <plugin>
                     <groupId>org.apache.rat</groupId>
                     <artifactId>apache-rat-plugin</artifactId>
-                    <version>0.7</version>
+                    <version>0.16.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -329,7 +461,7 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-        <plugins>
+        <plugins><!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -338,7 +470,7 @@
                     <target>${target.jdk}</target>
                     <encoding>iso8859-1</encoding>
                 </configuration>
-            </plugin>
+            </plugin> -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>

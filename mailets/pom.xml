@@ -24,7 +24,7 @@
         <groupId>org.bedework</groupId>
         <version>0.7-SNAPSHOT</version>
     </parent>
-    <groupId>org.bedework</groupId>
+
     <artifactId>apache-jdkim-mailets</artifactId>
     <name>jDKIM Mailets for Apache James</name>
     <url>http://james.apache.org/jdkim/mailets/</url>
@@ -35,6 +35,7 @@
             <groupId>org.apache.james</groupId>
             <artifactId>apache-mailet</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.bedework</groupId>
             <artifactId>apache-jdkim-library</artifactId>
@@ -71,12 +72,15 @@
             <groupId>org.apache.james</groupId>
             <artifactId>apache-mailet-base</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.apache.james</groupId>
             <artifactId>apache-mailet-base</artifactId>
             <type>test-jar</type>
             <scope>test</scope>
+            <classifier>tests</classifier>
         </dependency>
+
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
@@ -95,13 +99,13 @@
             <artifactId>geronimo-javamail_1.4_mail</artifactId>
         </dependency>
         <dependency>
-            <groupId>ca.juliusdavies</groupId>
+            <groupId>org.apache.commons</groupId>
             <artifactId>not-yet-commons-ssl</artifactId>
         </dependency>
+
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>1.4</version>
         </dependency>
     </dependencies>
 </project>

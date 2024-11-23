@@ -19,6 +19,18 @@
 
 package org.apache.james.jdkim.mailets;
 
+import junit.framework.TestCase;
+import org.apache.james.jdkim.DKIMVerifierImpl;
+import org.apache.james.jdkim.MockPublicKeyRecordRetriever;
+import org.apache.james.jdkim.api.SignatureRecord;
+import org.apache.james.jdkim.exceptions.FailException;
+import org.apache.james.jdkim.exceptions.PermFailException;
+import org.apache.mailet.Mail;
+import org.apache.mailet.Mailet;
+import org.apache.mailet.base.test.FakeMail;
+import org.apache.mailet.base.test.FakeMailContext;
+import org.apache.mailet.base.test.FakeMailetConfig;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -31,19 +43,6 @@ import javax.mail.Session;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
-
-import junit.framework.TestCase;
-
-import org.apache.james.jdkim.DKIMVerifier;
-import org.apache.james.jdkim.MockPublicKeyRecordRetriever;
-import org.apache.james.jdkim.api.SignatureRecord;
-import org.apache.james.jdkim.exceptions.FailException;
-import org.apache.james.jdkim.exceptions.PermFailException;
-import org.apache.mailet.Mail;
-import org.apache.mailet.Mailet;
-import org.apache.mailet.base.test.FakeMail;
-import org.apache.mailet.base.test.FakeMailContext;
-import org.apache.mailet.base.test.FakeMailetConfig;
 
 public class DKIMSignTest extends TestCase {
 
@@ -103,7 +102,7 @@ public class DKIMSignTest extends TestCase {
 	private List<SignatureRecord> verify(ByteArrayOutputStream rawMessage,
 			MockPublicKeyRecordRetriever mockPublicKeyRecordRetriever)
 			throws MessagingException, FailException {
-		List<SignatureRecord> signs = DKIMVerify.verify(new DKIMVerifier(mockPublicKeyRecordRetriever), new MimeMessage(Session.getDefaultInstance(new Properties()), new ByteArrayInputStream(rawMessage.toByteArray())), true);
+		List<SignatureRecord> signs = DKIMVerify.verify(new DKIMVerifierImpl(mockPublicKeyRecordRetriever), new MimeMessage(Session.getDefaultInstance(new Properties()), new ByteArrayInputStream(rawMessage.toByteArray())), true);
         assertNotNull(signs);
         assertEquals(1, signs.size());
         return signs;

@@ -19,6 +19,9 @@
 
 package org.apache.james.jdkim;
 
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 import org.apache.james.jdkim.api.SignatureRecord;
 import org.apache.james.jdkim.exceptions.PermFailException;
 
@@ -29,10 +32,6 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 
 /**
  * Creates a TestSuite running the test for each .msg file in the test resouce
@@ -244,7 +243,7 @@ public class FileBasedTest extends TestCase {
                         "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQChRebhcm4h8BkIYHRxg1GlKLsDkwdrqkFJ8f88xHQ5Gf3NH4I4e06M3XQ+B4tWWK/rX0srwXFgrJPzKZK+x7gN89nmqyM+NNaM+Wm2C0GjTpx6639zK3bAAGYCm0L9lGD7PgDxpWok+YogH0Ml4acEwDw/cnhErAWAnX8doPliawIDAQAB");
 
         try {
-            List<SignatureRecord> res = new DKIMVerifier(pkr).verify(is);
+            List<SignatureRecord> res = new DKIMVerifierImpl(pkr).verify(is);
             if (getName().startsWith("NONE_"))
                 assertNull(res);
             if (getName().startsWith("FAIL_"))

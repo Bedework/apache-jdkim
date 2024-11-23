@@ -20,6 +20,7 @@
 package org.apache.james.jdkim;
 
 import org.apache.james.jdkim.api.BodyHasher;
+import org.apache.james.jdkim.api.DKIMVerifier;
 import org.apache.james.jdkim.api.Headers;
 import org.apache.james.jdkim.api.PublicKeyRecord;
 import org.apache.james.jdkim.api.PublicKeyRecordRetriever;
@@ -52,14 +53,15 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class DKIMVerifier extends DKIMCommon {
+public class DKIMVerifierImpl extends DKIMCommon
+        implements DKIMVerifier {
 	/* Servers in close proximity might have clocks slightly out of alignment
 	 */
 	protected int allowableFutureSeconds = 0;
 
     private PublicKeyRecordRetriever publicKeyRecordRetriever;
 
-    public DKIMVerifier() {
+    public DKIMVerifierImpl() {
     	MultiplexingPublicKeyRecordRetriever mpkrr =
     			new MultiplexingPublicKeyRecordRetriever();
     	mpkrr.addRetriever("dns", new DNSPublicKeyRecordRetriever());
@@ -68,7 +70,7 @@ public class DKIMVerifier extends DKIMCommon {
     	publicKeyRecordRetriever = mpkrr;
     }
 
-    public DKIMVerifier(final PublicKeyRecordRetriever publicKeyRecordRetriever) {
+    public DKIMVerifierImpl(final PublicKeyRecordRetriever publicKeyRecordRetriever) {
         this.publicKeyRecordRetriever = publicKeyRecordRetriever;
     }
 

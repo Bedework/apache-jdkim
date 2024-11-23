@@ -17,28 +17,39 @@
  * under the License.                                           *
  ****************************************************************/
 
-package org.apache.james.jdkim;
+package org.apache.james.jdkim.api;
 
-import org.apache.james.jdkim.api.PublicKeyRecordRetriever;
-import org.apache.james.jdkim.api.SignatureRecord;
-import org.apache.james.jdkim.tagvalue.SignatureRecordImpl;
+import java.security.PrivateKey;
 
-/** Variation on the DKIMVerifier class which handles ischedule (http) data
- *
+/** Interface to jdkim so we can isolate it and it's dependencies.
+ * User: mike Date: 11/22/24 Time: 15:04
  */
-public class IscheduleDKIMVerifier extends DKIMVerifierImpl {
-	public IscheduleDKIMVerifier() {
-		super();
-		allowableFutureSeconds = 360;
-	}
+public interface JDKIM {
+  /**
+   *
+   * @return a SignatureRecord implementation
+   */
+  SignatureRecord getSignatureRecord(String data);
 
-	public IscheduleDKIMVerifier(final PublicKeyRecordRetriever publicKeyRecordRetriever) {
-		super(publicKeyRecordRetriever);
-		allowableFutureSeconds = 360;
-	}
+  /**
+   *
+   * @return a SignatureRecord implementation for iSchedule
+   */
+  SignatureRecord getSignatureRecordForIschedule(String data);
 
-	@Override
-	public SignatureRecord newSignatureRecord(final String record) {
-		return SignatureRecordImpl.forIschedule(record);
-	}
+  void addDKIMVerifierStoredKey(String domain,
+                                String selector,
+                                String key);
+
+  DKIMVerifier getDKIMVerifier();
+
+  DKIMVerifier getIscheduleDKIMVerifier();
+
+  DKIMSigner getDKIMSigner(String signatureRecordTemplate,
+                           PrivateKey privateKey);
+
+  IscheduleDKIMSigner getIscheduleDKIMSigner(PrivateKey privateKey);
+
+  IscheduleDKIMSigner getIscheduleDKIMSigner(String signatureRecordTemplate,
+                                    PrivateKey privateKey);
 }

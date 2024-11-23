@@ -19,6 +19,17 @@
 
 package org.apache.james.jdkim;
 
+import org.apache.commons.codec.binary.Base64;
+import org.apache.james.jdkim.api.BodyHasher;
+import org.apache.james.jdkim.api.DKIMSigner;
+import org.apache.james.jdkim.api.Headers;
+import org.apache.james.jdkim.api.SignatureRecord;
+import org.apache.james.jdkim.exceptions.FailException;
+import org.apache.james.jdkim.exceptions.PermFailException;
+import org.apache.james.jdkim.impl.BodyHasherImpl;
+import org.apache.james.jdkim.impl.Message;
+import org.apache.james.jdkim.tagvalue.SignatureRecordImpl;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
@@ -31,22 +42,13 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.List;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.james.jdkim.api.BodyHasher;
-import org.apache.james.jdkim.api.Headers;
-import org.apache.james.jdkim.api.SignatureRecord;
-import org.apache.james.jdkim.exceptions.FailException;
-import org.apache.james.jdkim.exceptions.PermFailException;
-import org.apache.james.jdkim.impl.BodyHasherImpl;
-import org.apache.james.jdkim.impl.Message;
-import org.apache.james.jdkim.tagvalue.SignatureRecordImpl;
+public class DKIMSignerImpl extends DKIMCommon
+        implements DKIMSigner {
 
-public class DKIMSigner extends DKIMCommon {
+    protected PrivateKey privateKey;
+    protected String signatureRecordTemplate;
 
-    private PrivateKey privateKey;
-    private String signatureRecordTemplate;
-
-    public DKIMSigner(String signatureRecordTemplate, PrivateKey privateKey) {
+    public DKIMSignerImpl(String signatureRecordTemplate, PrivateKey privateKey) {
         this.privateKey = privateKey;
         this.signatureRecordTemplate = signatureRecordTemplate;
     }
@@ -123,7 +125,7 @@ public class DKIMSigner extends DKIMCommon {
         } catch (InvalidKeyException e) {
             throw new PermFailException("Invalid key: " + e.getMessage(), e);
         } catch (NoSuchAlgorithmException e) {
-            throw new PermFailException("Unknown algorythm: " + e.getMessage(),
+            throw new PermFailException("Unknown algorithm: " + e.getMessage(),
                     e);
         } catch (SignatureException e) {
             throw new PermFailException("Signing exception: " + e.getMessage(),

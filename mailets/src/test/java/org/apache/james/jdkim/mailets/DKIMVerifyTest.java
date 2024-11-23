@@ -19,17 +19,8 @@
 
 package org.apache.james.jdkim.mailets;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.internet.MimeMessage;
-
 import junit.framework.TestCase;
-
-import org.apache.james.jdkim.DKIMVerifier;
+import org.apache.james.jdkim.DKIMVerifierImpl;
 import org.apache.james.jdkim.MockPublicKeyRecordRetriever;
 import org.apache.james.jdkim.exceptions.FailException;
 import org.apache.mailet.Mail;
@@ -37,6 +28,14 @@ import org.apache.mailet.Mailet;
 import org.apache.mailet.base.test.FakeMail;
 import org.apache.mailet.base.test.FakeMailContext;
 import org.apache.mailet.base.test.FakeMailetConfig;
+
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.util.Properties;
+
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.internet.MimeMessage;
 
 public class DKIMVerifyTest extends TestCase {
 
@@ -96,7 +95,7 @@ public class DKIMVerifyTest extends TestCase {
 
             @Override
             public void init() throws MessagingException {
-                verifier = new DKIMVerifier(new MockPublicKeyRecordRetriever(
+                verifier = new DKIMVerifierImpl(new MockPublicKeyRecordRetriever(
                         "v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDYDaYKXzwVYwqWbLhmuJ66aTAN8wmDR+rfHE8HfnkSOax0oIoTM5zquZrTLo30870YMfYzxwfB6j/Nz3QdwrUD/t0YMYJiUKyWJnCKfZXHJBJ+yfRHr7oW+UW3cVo9CG2bBfIxsInwYe175g9UjyntJpWueqdEIo1c2bhv9Mp66QIDAQAB;",
                         "selector", "example.com"));
             }

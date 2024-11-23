@@ -19,20 +19,20 @@
 
 package org.apache.james.jdkim.mailets;
 
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.List;
-
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
-
-import org.apache.james.jdkim.DKIMVerifier;
+import org.apache.james.jdkim.DKIMVerifierImpl;
 import org.apache.james.jdkim.api.BodyHasher;
 import org.apache.james.jdkim.api.Headers;
 import org.apache.james.jdkim.api.SignatureRecord;
 import org.apache.james.jdkim.exceptions.FailException;
 import org.apache.mailet.Mail;
 import org.apache.mailet.base.GenericMailet;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.List;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 /**
  * This mailet verify a message using the DKIM protocol
@@ -51,12 +51,12 @@ public class DKIMVerify extends GenericMailet {
 
     public static final String DKIM_AUTH_RESULT_ATTRIBUTE = "jDKIM.AUTHRESULT";
     
-    protected DKIMVerifier verifier = null;
+    protected DKIMVerifierImpl verifier = null;
     private boolean forceCRLF;
 
     @Override
     public void init() throws MessagingException {
-        verifier = new DKIMVerifier();
+        verifier = new DKIMVerifierImpl();
         forceCRLF = getInitParameter("forceCRLF", true);
     }
     
@@ -86,7 +86,7 @@ public class DKIMVerify extends GenericMailet {
         
     }
 
-	protected static List<SignatureRecord> verify(DKIMVerifier verifier, MimeMessage message, boolean forceCRLF)
+	protected static List<SignatureRecord> verify(DKIMVerifierImpl verifier, MimeMessage message, boolean forceCRLF)
 			throws MessagingException, FailException {
 		Headers headers = new MimeMessageHeaders(message);
 		BodyHasher bh = verifier.newBodyHasher(headers);

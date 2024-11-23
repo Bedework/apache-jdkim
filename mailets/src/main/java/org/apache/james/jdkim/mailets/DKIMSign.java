@@ -36,7 +36,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.ssl.PKCS8Key;
-import org.apache.james.jdkim.DKIMSigner;
+import org.apache.james.jdkim.DKIMSignerImpl;
 import org.apache.james.jdkim.api.BodyHasher;
 import org.apache.james.jdkim.api.Headers;
 import org.apache.james.jdkim.api.SignatureRecord;
@@ -124,7 +124,7 @@ public class DKIMSign extends GenericMailet {
     }
 
     public void service(Mail mail) throws MessagingException {
-        DKIMSigner signer = new DKIMSigner(getSignatureTemplate(), getPrivateKey());
+        DKIMSignerImpl signer = new DKIMSignerImpl(getSignatureTemplate(), getPrivateKey());
         SignatureRecord signRecord = signer
                 .newSignatureRecordTemplate(getSignatureTemplate());
         try {

@@ -19,6 +19,12 @@
 
 package org.apache.james.jdkim;
 
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
+import org.apache.james.jdkim.api.SignatureRecord;
+import org.apache.james.jdkim.exceptions.FailException;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,13 +34,6 @@ import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.List;
-
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
-import org.apache.james.jdkim.api.SignatureRecord;
-import org.apache.james.jdkim.exceptions.FailException;
 
 /**
  * Creates a TestSuite running the test for each .msg file in the test resouce
@@ -112,7 +111,7 @@ public class PerlDKIMTest extends TestCase {
             expectFailure = true;
 
         try {
-            List<SignatureRecord> res = new DKIMVerifier(pkr).verify(is);
+            List<SignatureRecord> res = new DKIMVerifierImpl(pkr).verify(is);
             if (expectNull)
                 assertNull(res);
             if (expectFailure)

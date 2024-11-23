@@ -24,7 +24,7 @@
         <groupId>org.bedework</groupId>
         <version>0.7-SNAPSHOT</version>
     </parent>
-    <groupId>org.bedework</groupId>
+
     <artifactId>apache-jdkim</artifactId>
     <name>Apache JAMES jDKIM Assembly</name>
     <description>A Java implementation for the DKIM specification.</description>
@@ -44,7 +44,7 @@
             <artifactId>dnsjava</artifactId>
         </dependency>
         <dependency>
-            <groupId>ca.juliusdavies</groupId>
+            <groupId>org.apache.commons</groupId>
             <artifactId>not-yet-commons-ssl</artifactId>
         </dependency>
         <dependency>

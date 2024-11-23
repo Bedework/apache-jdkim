@@ -17,28 +17,25 @@
  * under the License.                                           *
  ****************************************************************/
 
-package org.apache.james.jdkim;
+package org.apache.james.jdkim.api;
 
-import org.apache.james.jdkim.api.PublicKeyRecordRetriever;
-import org.apache.james.jdkim.api.SignatureRecord;
-import org.apache.james.jdkim.tagvalue.SignatureRecordImpl;
+import org.apache.james.jdkim.exceptions.FailException;
+import org.apache.james.jdkim.exceptions.PermFailException;
 
-/** Variation on the DKIMVerifier class which handles ischedule (http) data
- *
+import java.io.IOException;
+import java.io.InputStream;
+
+/**
+ * User: mike Date: 11/22/24 Time: 22:04
  */
-public class IscheduleDKIMVerifier extends DKIMVerifierImpl {
-	public IscheduleDKIMVerifier() {
-		super();
-		allowableFutureSeconds = 360;
-	}
+public interface DKIMSigner {
+  SignatureRecord newSignatureRecordTemplate(String record);
 
-	public IscheduleDKIMVerifier(final PublicKeyRecordRetriever publicKeyRecordRetriever) {
-		super(publicKeyRecordRetriever);
-		allowableFutureSeconds = 360;
-	}
+  BodyHasher newBodyHasher(SignatureRecord signRecord)
+          throws PermFailException;
 
-	@Override
-	public SignatureRecord newSignatureRecord(final String record) {
-		return SignatureRecordImpl.forIschedule(record);
-	}
+  String sign(InputStream is) throws IOException, FailException;
+
+  String sign(Headers message,
+              BodyHasher bh) throws PermFailException;
 }
